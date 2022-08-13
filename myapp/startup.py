@@ -31,13 +31,13 @@ class PreStartUp:
     @staticmethod
     def set_qt_application_name():
         from PySide6.QtCore import QCoreApplication
-        QCoreApplication.setApplicationName('my app name')
-        QCoreApplication.setOrganizationName('my org name')
+        QCoreApplication.setApplicationName('ListGuard')
+        QCoreApplication.setOrganizationName('io.github.jac241')
 
     @staticmethod
     def set_qt_application_version():
         from PySide6.QtCore import QCoreApplication
-        QCoreApplication.setApplicationVersion('my app version')
+        QCoreApplication.setApplicationVersion('1.0.0')
 
     @staticmethod
     def prepare_dependency_injection():

@@ -25,11 +25,13 @@
 import sys
 
 import inject
-from PySide6.QtCore import QUrl
+from PySide6.QtCore import QUrl, QFileSystemWatcher
 from PySide6.QtGui import QGuiApplication, QIcon
 from PySide6.QtQml import QQmlApplicationEngine
 
+from myapp import watcher
 from myapp.services import TranslationService
+from myapp.watcher import ListDirectoryWatcher, ListManager, LIST_DIR
 
 
 class MyApplication(QGuiApplication):
@@ -39,8 +41,10 @@ class MyApplication(QGuiApplication):
         super().__init__(args)
         self._engine = QQmlApplicationEngine()
 
+        self._set_up_watcher()
+
     def set_window_icon(self):
-        icon = QIcon(':/data/app-icon.svg')
+        icon = QIcon(':/data/listicon.png')
         self.setWindowIcon(icon)
 
     def initialize_translator(self):
@@ -61,3 +65,7 @@ class MyApplication(QGuiApplication):
     def verify(self):
         if not self._engine.rootObjects():
             sys.exit(-1)
+
+    def _set_up_watcher(self):
+        self._watcher = ListDirectoryWatcher(list_manager=ListManager(LIST_DIR))
+        watcher.initialize(self._watcher, LIST_DIR)

@@ -524,3 +524,5 @@ $RECYCLE.BIN/
 
 myapp/generated_resources.py
 test/generated_resources.py
+
+test/support/JHN List/*.xlsx
